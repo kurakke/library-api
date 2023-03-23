@@ -20,7 +20,7 @@ model BorrowingHistory {
   book Book @relation(fields: [bookId], references: [id])
   create DateTime
   returnDay DateTime
-  returnedDay DateTime
+  returnedDay DateTime?
   borrowingStatus String
 }
 model Book {
