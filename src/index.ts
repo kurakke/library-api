@@ -10,11 +10,6 @@ app.use('/books', bookRouter)
 app.get('/', (req: Request, res: Response) => {
     res.send('HelloNode');
 })
-// app.get('/user', async(req: Request, res: Response) => {
-//     const users = await prisma.user.findMany();
-//     console.log(users);
 
-//     return res.json(users);
-// })
 
 app.listen(port, () => console.log(`Example App Listening On Port ${port}!`));
