@@ -3,7 +3,6 @@ import { PrismaClient } from '@prisma/client';
 
 const app = express();
 const port = 3000;
-const prisma = new PrismaClient();
 const bookRouter = require("./routes/book.route");
 
 app.use('/books', bookRouter)
