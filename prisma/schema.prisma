@@ -33,19 +33,19 @@ model Book {
   owner            String
   thumbnail_url    String
   histories        BorrowingHistory[]
-  book_tags        BookTag[]
+  book_tags        BookTags[]
 }
 
-model BookTag {
+model Tag {
+  id        String     @id @default(uuid())
+  tag       String
+  boot_tags BookTags[]
+}
+
+model BookTags {
   id     String @id @default(uuid())
   bookId String @unique
   tagId  String @unique
   book   Book   @relation(fields: [bookId], references: [id])
   tag    Tag    @relation(fields: [tagId], references: [id])
-}
-
-model Tag {
-  id        String    @id @default(uuid())
-  tag       String
-  boot_tags BookTag[]
 }
