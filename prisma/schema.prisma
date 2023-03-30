@@ -9,18 +9,21 @@ datasource db {
 }
 
 model User {
-  id             String   @id @default(uuid())
+  id             String             @id @default(uuid())
   name           String
   mail           String
   privilege_role String
   date_birth     DateTime
+  histories      BorrowingHistory[]
 }
 
 model BorrowingHistory {
   id              String    @id @default(uuid())
   bookId          String    @unique
   book            Book      @relation(fields: [bookId], references: [id])
-  create          DateTime
+  userId          String    @unique
+  user            User      @relation(fields: [userId], references: [id])
+  create          DateTime  @default(now())
   returnDay       DateTime
   returnedDay     DateTime?
   borrowingStatus String
