@@ -18,6 +18,22 @@ export const create = async (req: Request, res: Response): Promise<BorrowingHist
             borrowingStatus,
         }
     })
-     res.send(bookHistory)
-     return bookHistory;
+    res.send(bookHistory)
+    return bookHistory;
+}
+
+export const update = async (req: Request, res: Response): Promise<BorrowingHistory> => {
+    const { borrowingHistoryId, returnDay, borrowingStatus, returnedDay } = req.body;
+    const bookHistory = await prisma.borrowingHistory.update({
+        where: {
+            id: borrowingHistoryId 
+        },
+        data: {
+            returnDay: returnDay,
+            borrowingStatus: borrowingStatus,
+            returnedDay: returnedDay,
+        },
+    })
+    res.send(bookHistory)
+    return bookHistory;
 }
