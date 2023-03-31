@@ -19,14 +19,16 @@ model User {
 
 model BorrowingHistory {
   id              String    @id @default(uuid())
-  bookId          String    @unique
+  bookId          String    
   book            Book      @relation(fields: [bookId], references: [id])
-  userId          String    @unique
+  userId          String    
   user            User      @relation(fields: [userId], references: [id])
   create          DateTime  @default(now())
   returnDay       DateTime
   returnedDay     DateTime?
   borrowingStatus String
+  @@index([bookId])
+  @@index([userId])
 }
 
 model Book {
@@ -51,4 +53,6 @@ model BookTags {
   book   Book   @relation(fields: [bookId], references: [id])
   tag    Tag    @relation(fields: [tagId], references: [id])
   @@id([bookId, tagId])
+  @@index([bookId])
+  @@index([tagId])
 }
