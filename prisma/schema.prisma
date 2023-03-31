@@ -42,13 +42,13 @@ model Book {
 model Tag {
   id        String     @id @default(uuid())
   tag       String
-  boot_tags BookTags[]
+  book_tags BookTags[]
 }
 
 model BookTags {
-  id     String @id @default(uuid())
-  bookId String @unique
-  tagId  String @unique
+  bookId String
+  tagId  String
   book   Book   @relation(fields: [bookId], references: [id])
   tag    Tag    @relation(fields: [tagId], references: [id])
+  @@id([bookId, tagId])
 }
