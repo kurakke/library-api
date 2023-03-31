@@ -26,7 +26,7 @@ export const update = async (req: Request, res: Response): Promise<BorrowingHist
     const { borrowingHistoryId, returnDay, borrowingStatus, returnedDay } = req.body;
     const bookHistory = await prisma.borrowingHistory.update({
         where: {
-            id: borrowingHistoryId 
+            id: borrowingHistoryId
         },
         data: {
             returnDay: returnDay,
