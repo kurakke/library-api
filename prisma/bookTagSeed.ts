@@ -2,44 +2,44 @@ import { PrismaClient, BookTags } from "@prisma/client";
 
 const prisma = new PrismaClient;
 
-const bookTags: BookTags[] = [
+const bookTags:BookTags  [] = [
     {
-        id: "3d8b4f4f-3cf4-eaa9-ce38-051f640cec01",
+        id: "615d3bd2-4bbf-350e-1896-a8441b8d8b90",
         bookId: "71774dfc-0c73-9fbd-ae5f-9f2b9bbc9bf1",
         tagId: "db3b56a9-948f-07b7-133b-4d246354edd1",
     },
     {
-        id: "3d8b4f4f-3cf4-eaa9-ce38-051f640cec02",
+        id: "615d3bd2-4bbf-350e-1896-a8441b8d8b91",
         bookId: "71774dfc-0c73-9fbd-ae5f-9f2b9bbc9bf2",
         tagId: "db3b56a9-948f-07b7-133b-4d246354edd2",
     },
     {
-        id: "3d8b4f4f-3cf4-eaa9-ce38-051f640cec03",
+        id: "615d3bd2-4bbf-350e-1896-a8441b8d8b92",
         bookId: "71774dfc-0c73-9fbd-ae5f-9f2b9bbc9bf3",
         tagId: "db3b56a9-948f-07b7-133b-4d246354edd3",
     },
     {
-        id: "3d8b4f4f-3cf4-eaa9-ce38-051f640cec04",
+        id: "615d3bd2-4bbf-350e-1896-a8441b8d8b93",
         bookId: "71774dfc-0c73-9fbd-ae5f-9f2b9bbc9bf4",
         tagId: "db3b56a9-948f-07b7-133b-4d246354edd4",
     },
     {
-        id: "3d8b4f4f-3cf4-eaa9-ce38-051f640cec05",
+        id: "615d3bd2-4bbf-350e-1896-a8441b8d8b94",
         bookId: "71774dfc-0c73-9fbd-ae5f-9f2b9bbc9bf5",
         tagId: "db3b56a9-948f-07b7-133b-4d246354edd5",
     },
     {
-        id: "3d8b4f4f-3cf4-eaa9-ce38-051f640cec06",
+        id: "615d3bd2-4bbf-350e-1896-a8441b8d8b95",
         bookId: "71774dfc-0c73-9fbd-ae5f-9f2b9bbc9bf5",
         tagId: "db3b56a9-948f-07b7-133b-4d246354edd3",
     },
     {
-        id: "3d8b4f4f-3cf4-eaa9-ce38-051f640cec07",
+        id: "615d3bd2-4bbf-350e-1896-a8441b8d8b96",
         bookId: "71774dfc-0c73-9fbd-ae5f-9f2b9bbc9bf5",
         tagId: "db3b56a9-948f-07b7-133b-4d246354edd51",
     },
     {
-        id: "3d8b4f4f-3cf4-eaa9-ce38-051f640cec08",
+        id: "615d3bd2-4bbf-350e-1896-a8441b8d8b97",
         bookId: "71774dfc-0c73-9fbd-ae5f-9f2b9bbc9bf2",
         tagId: "db3b56a9-948f-07b7-133b-4d246354edd5",
     }

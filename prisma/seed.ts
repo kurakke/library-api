@@ -8,10 +8,10 @@ const prisma = new PrismaClient();
 const seed = async () => {
     await seedBooks();
     await seedTags();
-    await seedBookTags();
+    // await seedBookTags();
 }
 
-seed()  
+seed()
     .catch((e) => console.error(e))
     .finally(async () => {
         await prisma.$disconnect();
