@@ -9,23 +9,31 @@ export const get = async (req: Request, res: Response) => {
 };
 
 export const getDetail = async (req: Request, res: Response) => {
-    const id = req.params.id;
-    const book = await prisma.book.findUnique({
-        where: {
-            id: id,
-        },
-        include: {
-            book_tags: {
-                select: {
-                    tag: {
-                        select: {
-                            tag: true,
+    try {
+        const id = req.params.id;
+        const book = await prisma.book.findUnique({
+            where: {
+                id,
+            },
+            include: {
+                book_tags: {
+                    select: {
+                        tag: {
+                            select: {
+                                label: true,
+                            },
                         },
                     },
                 },
             },
-        },
-    });
+        });
 
-    res.send(book);
+        if (!book) {
+            return res.status(404).send({ error: 'book not found' });
+        }
+
+        return res.send(book);
+    } catch (e: any) {
+        return res.status(500).send({ error: e.message });
+    }
 };
