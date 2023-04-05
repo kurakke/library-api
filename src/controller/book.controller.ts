@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { PrismaClient, BorrowingHistory } from "@prisma/client";
+import { PrismaClient, LendRecord } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -8,30 +8,29 @@ export const get = async (req: Request, res: Response) => {
     res.send(books)
 }
 
-export const create = async (req: Request, res: Response): Promise<BorrowingHistory> => {
-    const { bookId, userId, returnDay, borrowingStatus } = req.body;
-    const bookHistory = await prisma.borrowingHistory.create({
+export const create = async (req: Request, res: Response): Promise<LendRecord> => {
+    const { bookId, userId, returnedDate, created_at, deadline } = req.body;
+    const bookHistory = await prisma.lendRecord.create({
         data: {
             bookId,
             userId,
-            returnDay,
-            borrowingStatus,
+            returnedDate,
+            created_at,
+            deadline,
         }
     })
     res.send(bookHistory)
     return bookHistory;
 }
 
-export const update = async (req: Request, res: Response): Promise<BorrowingHistory> => {
-    const { borrowingHistoryId, returnDay, borrowingStatus, returnedDay } = req.body;
-    const bookHistory = await prisma.borrowingHistory.update({
+export const update = async (req: Request, res: Response): Promise<LendRecord> => {
+    const { lendRecordId, bookId, userId, returnedDate, created_at, deadline } = req.body;
+    const bookHistory = await prisma.lendRecord.update({
         where: {
-            id: borrowingHistoryId
+            id: lendRecordId
         },
         data: {
-            returnDay: returnDay,
-            borrowingStatus: borrowingStatus,
-            returnedDay: returnedDay,
+            returnedDate: returnedDate,
         },
     })
     res.send(bookHistory)
