@@ -1,8 +1,8 @@
-import { PrismaClient, BookTags } from "@prisma/client";
+import { PrismaClient, BookTag } from "@prisma/client";
 
 const prisma = new PrismaClient;
 
-const bookTags:BookTags  [] = [
+const bookTag: BookTag[] = [
     {
         id: "615d3bd2-4bbf-350e-1896-a8441b8d8b90",
         bookId: "71774dfc-0c73-9fbd-ae5f-9f2b9bbc9bf1",
@@ -45,8 +45,8 @@ const bookTags:BookTags  [] = [
     }
 ]
 
-export const seedBookTags = async () => {
-    await prisma.bookTags.createMany({
-        data: bookTags
+export const seedBookTag = async () => {
+    await prisma.bookTag.createMany({
+        data: bookTag
     })
 }

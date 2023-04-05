@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { seedBooks } from "./bookSeed";
-import { seedBookTags } from "./bookTagSeed";
+import { seedBookTag } from "./bookTagSeed";
 import { seedTags } from "./tagSeed";
 
 const prisma = new PrismaClient();
@@ -8,7 +8,7 @@ const prisma = new PrismaClient();
 const seed = async () => {
     await seedBooks();
     await seedTags();
-    // await seedBookTags();
+    // await seedBookTag();
 }
 
 seed()

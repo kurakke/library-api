@@ -9,50 +9,53 @@ datasource db {
 }
 
 model User {
-  id             String   @id @default(uuid())
-  name           String
-  mail           String
-  privilege_role String
-  date_birth     DateTime
+  id               String       @id @default(uuid())
+  name             String
+  mail             String
+  role             String
+  date_birth       DateTime
+  BorrowingHistory LendRecord[]
 }
 
-model BorrowingHistory {
-  id              String    @id @default(uuid())
-  bookId          String
-  userId          String
-  create          DateTime  @default(now())
-  returnDay       DateTime
-  returnedDay     DateTime?
-  borrowingStatus String
-  book            Book      @relation(fields: [bookId], references: [id])
+model LendRecord {
+  id           String    @id @default(uuid())
+  bookId       String
+  userId       String
+  created_at   DateTime  @default(now())
+  deadline     DateTime
+  returnedDate DateTime?
+  book         Book      @relation(fields: [bookId], references: [id])
+  user         User      @relation(fields: [userId], references: [id])
 
   @@index([bookId])
   @@index([userId])
 }
 
 model Book {
-  id               String             @id @default(uuid())
-  name             String
+  id               String       @id @default(uuid())
+  isbn             String
+  title            String
   publication_year Int
   owner            String
-  thumbnail_url    String
-  histories        BorrowingHistory[]
-  book_tags        BookTags[]
+  // MJ || Conken
+  thumbnail_url    String?
+  lendRecords      LendRecord[]
+  book_tags        BookTag[]
 }
 
 model Tag {
-  id        String     @id @default(uuid())
-  tag       String
-  boot_tags BookTags[]
+  id        String    @id @default(uuid())
+  label     String
+  book_tags BookTag[]
 }
 
-model BookTags {
+model BookTag {
   id     String @id @default(uuid())
   bookId String
   tagId  String
   book   Book   @relation(fields: [bookId], references: [id])
   tag    Tag    @relation(fields: [tagId], references: [id])
 
-  @@index([bookId])
+  @@unique([bookId, tagId])
   @@index([tagId])
 }

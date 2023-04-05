@@ -5,23 +5,23 @@ const prisma = new PrismaClient;
 const tags: Tag[] = [
     {
         id: "db3b56a9-948f-07b7-133b-4d246354edd1",
-        tag: "history",
+        label: "history",
     },
     {
         id: "db3b56a9-948f-07b7-133b-4d246354edd2",
-        tag: "javascript",
+        label: "javascript",
     },
     {
         id: "db3b56a9-948f-07b7-133b-4d246354edd3",
-        tag: "typescript",
+        label: "typescript",
     },
     {
         id: "db3b56a9-948f-07b7-133b-4d246354edd4",
-        tag: "rails",
+        label: "rails",
     },
     {
         id: "db3b56a9-948f-07b7-133b-4d246354edd5",
-        tag: "ruby",
+        label: "ruby",
     }
 ]
 
