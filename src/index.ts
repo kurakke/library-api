@@ -9,5 +9,4 @@ app.get('/', (req: Request, res: Response) => {
     res.send('HelloNode');
 })
 
-
 app.listen(port, () => console.log(`Example App Listening On Port ${port}!`));
