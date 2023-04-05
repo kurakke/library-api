@@ -24,7 +24,7 @@ export const create = async (req: Request, res: Response): Promise<LendRecord> =
 }
 
 export const update = async (req: Request, res: Response): Promise<LendRecord> => {
-    const { lendRecordId, bookId, userId, returnedDate, created_at, deadline } = req.body;
+    const { lendRecordId, returnedDate } = req.body;
     const bookHistory = await prisma.lendRecord.update({
         where: {
             id: lendRecordId
