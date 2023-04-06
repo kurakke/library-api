@@ -1,9 +1,10 @@
 import express, { Request, Response } from 'express';
-
+import userRouter from './routes/user.route';
+import  bookRourter  from './routes/book.route'
 const app = express();
 const port = 3000;
-const bookRouter = require("./routes/book.route");
 
+ 
 app.use('/books', bookRouter)
 app.get('/', (req: Request, res: Response) => {
     res.send('HelloNode');
