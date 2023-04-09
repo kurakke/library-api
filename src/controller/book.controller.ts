@@ -9,13 +9,13 @@ export const get = async (req: Request, res: Response) => {
 }
 
 export const create = async (req: Request, res: Response): Promise<LendRecord> => {
-    const { bookId, userId, returnedDate, created_at, deadline } = req.body;
+    const { bookId, userId, returnedDate, createdAt, deadline } = req.body;
     const bookHistory = await prisma.lendRecord.create({
         data: {
             bookId,
             userId,
             returnedDate,
-            created_at,
+            createdAt,
             deadline,
         }
     })
