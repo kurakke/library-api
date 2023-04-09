@@ -13,7 +13,7 @@ model User {
   name             String
   mail             String
   role             String
-  dateBirth       DateTime
+  dateBirth        DateTime
   borrowingHistory LendRecord[]
 }
 
@@ -21,7 +21,7 @@ model LendRecord {
   id           String    @id @default(uuid())
   bookId       String
   userId       String
-  createdAt   DateTime  @default(now())
+  createdAt    DateTime  @default(now())
   deadline     DateTime
   returnedDate DateTime?
   book         Book      @relation(fields: [bookId], references: [id])
@@ -32,20 +32,20 @@ model LendRecord {
 }
 
 model Book {
-  id               String       @id @default(uuid())
-  isbn             String
-  title            String
+  id              String       @id @default(uuid())
+  isbn            String
+  title           String
   publicationYear Int
-  owner            String
+  owner           String
   // MJ || Conken
   thumbnailUrl    String?
-  lendRecords      LendRecord[]
+  lendRecords     LendRecord[]
   bookTags        BookTag[]
 }
 
 model Tag {
-  id        String    @id @default(uuid())
-  label     String
+  id       String    @id @default(uuid())
+  label    String
   bookTags BookTag[]
 }
 
