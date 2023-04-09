@@ -13,15 +13,15 @@ model User {
   name             String
   mail             String
   role             String
-  date_birth       DateTime
-  BorrowingHistory LendRecord[]
+  dateBirth        DateTime
+  borrowingHistory LendRecord[]
 }
 
 model LendRecord {
   id           String    @id @default(uuid())
   bookId       String
   userId       String
-  created_at   DateTime  @default(now())
+  createdAt    DateTime  @default(now())
   deadline     DateTime
   returnedDate DateTime?
   book         Book      @relation(fields: [bookId], references: [id])
@@ -32,21 +32,21 @@ model LendRecord {
 }
 
 model Book {
-  id               String       @id @default(uuid())
-  isbn             String
-  title            String
-  publication_year Int
-  owner            String
+  id              String       @id @default(uuid())
+  isbn            String
+  title           String
+  publicationYear Int
+  owner           String
   // MJ || Conken
-  thumbnail_url    String?
-  lendRecords      LendRecord[]
-  book_tags        BookTag[]
+  thumbnailUrl    String?
+  lendRecords     LendRecord[]
+  bookTags        BookTag[]
 }
 
 model Tag {
-  id        String    @id @default(uuid())
-  label     String
-  book_tags BookTag[]
+  id       String    @id @default(uuid())
+  label    String
+  bookTags BookTag[]
 }
 
 model BookTag {
