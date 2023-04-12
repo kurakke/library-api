@@ -16,7 +16,7 @@ export const getDetail = async (req: Request, res: Response) => {
                 id,
             },
             include: {
-                book_tags: {
+                bookTags: {
                     select: {
                         tag: {
                             select: {
