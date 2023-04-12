@@ -33,7 +33,11 @@ export const getDetail = async (req: Request, res: Response) => {
         }
 
         return res.send(book);
-    } catch (e: any) {
-        return res.status(500).send({ error: e.message });
+    } catch (e) {
+        if (e instanceof Error) {
+            return res.status(500).send({ error: e.message });
+        }
+
+        return res.status(500).send({ error: String(e) });
     }
 };
