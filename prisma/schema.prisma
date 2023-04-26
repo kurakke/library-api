@@ -9,12 +9,12 @@ datasource db {
 }
 
 model User {
-  id               String       @id @default(uuid())
-  name             String
-  mail             String
-  role             String
-  dateBirth        DateTime
-  borrowingHistory LendRecord[]
+  id            String       @id @default(uuid())
+  name          String
+  mail          String
+  role          String
+  studentNumber Int
+  lendRecord    LendRecord[]
 }
 
 model LendRecord {
