@@ -43,6 +43,36 @@ export const getDetail = async (req: Request, res: Response) => {
 
 };
 
+export const getLendRecord = async (req: Request, res: Response) => {
+    try {
+        const id = req.params.id;
+        const user = await prisma.user.findUnique({
+            where: {
+                id,
+            },
+            include: {
+                lendRecords: {
+                    include: {
+                        book: {
+                            select: {
+                                id: true,
+                            },
+                        },
+                    },
+                },
+            },
+        });
+        if (!user) {
+            return res.status(404).send({ error: 'book not found' });
+        }
+        return res.send(user);
+    } catch (e) {
+        if (e instanceof Error) {
+            return res.status(500).send({ error: e.message });
+        }
+        return res.status(500).send({ error: String(e) });
+    }
+};
 
 export const create = async (req: Request, res: Response): Promise<LendRecord> => {
     const { bookId, userId, returnedDate, createdAt, deadline } = req.body;
