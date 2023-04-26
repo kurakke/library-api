@@ -1,8 +1,8 @@
 import express, { Request, Response } from 'express';
-
+import bookRouter from './routes/book.route';
+import { seedBookTag } from '../prisma/seeds/bookTagSeed';
 const app = express();
 const port = 3000;
-const bookRouter = require('./routes/book.route');
 
 app.use('/books', bookRouter);
 app.get('/', (req: Request, res: Response) => {

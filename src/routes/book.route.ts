@@ -6,4 +6,6 @@ const bookController = require('../controller/book.controller');
 router.get('/', bookController.get);
 router.get('/:id', bookController.getDetail);
 
-module.exports = router;
+module.exports = router
+
+export default router;
