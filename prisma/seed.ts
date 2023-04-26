@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
-import { seedBooks } from "./bookSeed";
-import { seedBookTag } from "./bookTagSeed";
-import { seedTags } from "./tagSeed";
+import { seedBooks } from "./seeds/bookSeed";
+import { seedBookTag } from "./seeds/bookTagSeed";
+import { seedTags } from "./seeds/tagSeed";
 
 const prisma = new PrismaClient();
 
