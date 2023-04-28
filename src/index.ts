@@ -9,7 +9,6 @@ app.use('/books', bookRouter)
 app.use('/user', userRouter)
 app.get('/', (req: Request, res: Response) => {
     res.send('HelloNode');
-})
-
+});
 
 app.listen(port, () => console.log(`Example App Listening On Port ${port}!`));
