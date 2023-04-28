@@ -21,3 +21,14 @@ export const signIn = (req: Request, res: Response) => {
             res.send(error);
         });
 }
+
+export const signUp = async (req: Request, res: Response) => {
+    const { token, email } = req.body;
+    admin.auth().verifyIdToken(token)
+        .then((decodedToken: { uid: string }) => {
+            const uid = decodedToken.uid;
+            
+            res.send(uid)
+        }
+    )
+}
