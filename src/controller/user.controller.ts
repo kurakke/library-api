@@ -10,7 +10,7 @@ export const logIn = async (req: Request, res: Response) => {
     const { token, mail } = req.body;
 }
 
-export const tokenInspection = (req: Request, res: Response) => {
+export const signIn = (req: Request, res: Response) => {
     const { token } = req.body;
     admin.auth().verifyIdToken(token)
         .then((decodedToken: { uid: string }) => {
