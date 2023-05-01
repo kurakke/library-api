@@ -6,10 +6,6 @@ import admin from "firebase-admin";
 
 const prisma = new PrismaClient();
 
-export const logIn = async (req: Request, res: Response) => {
-    const { token, mail } = req.body;
-}
-
 export const signIn = (req: Request, res: Response) => {
     const { token } = req.body;
     admin.auth().verifyIdToken(token)
