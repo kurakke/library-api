@@ -23,11 +23,20 @@ export const signIn = (req: Request, res: Response) => {
 }
 
 export const signUp = async (req: Request, res: Response) => {
-    const { token, email } = req.body;
+    const { token, email, name, studentNumber } = req.body;
+    
     admin.auth().verifyIdToken(token)
         .then((decodedToken: { uid: string }) => {
             const uid = decodedToken.uid;
-            
+            const user = prisma.user.create({
+                data: {
+                    id: uid,
+                    mail: email,
+                    name: name,
+                    role: "normal",
+                    studentNumber: studentNumber
+                }
+            })
             res.send(uid)
         }
     )
