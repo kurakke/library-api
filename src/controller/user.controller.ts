@@ -13,7 +13,7 @@ export const signIn = (req: Request, res: Response) => {
             res.send(decodedToken.uid)
         })
         .catch((error: Error) => {
-            console.log('Error verifying token:', error);
+            console.log(error);
             res.send(error);
         });
 }
@@ -34,6 +34,9 @@ export const signUp = async (req: Request, res: Response) => {
                 }
             })
             res.send(uid)
-        }
-    )
+        })
+        .catch((error: Error) => {
+            console.log(error);
+            res.send(error);
+        })
 }
