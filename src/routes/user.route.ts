@@ -3,7 +3,7 @@ import express from "express";
 const router = express.Router()
 const userController = require('../controller/user.controller')
 
-router.post('/logIn', userController.logIn)
+router.post('/signIn', userController.signIn)
 
 module.exports = router
 export default router
