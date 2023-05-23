@@ -4,7 +4,6 @@ import  bookRouter  from './routes/book.route'
 const app = express();
 const port = 8080;
 
- 
 app.use('/books', bookRouter)
 app.use('/user', userRouter)
 app.get('/', (req: Request, res: Response) => {
