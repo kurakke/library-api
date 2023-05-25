@@ -3,11 +3,7 @@ import { PrismaClient, User } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-export const signIn = (req: Request, res: Response) => {
-    return 'signin'
-}
-
-export const signUp = async (req: Request, res: Response) => {
+export const create = async (req: Request, res: Response) => {
     try {
         const { userId, name, mail, studentNumber } = req.body;
         const user = await prisma.user.create({
