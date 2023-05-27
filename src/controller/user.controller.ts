@@ -5,14 +5,14 @@ const prisma = new PrismaClient();
 
 export const create = async (req: Request, res: Response) => {
     try {
-        const { id, name, mail, studentNumber } = req.body;
+        const { id, name, email, studentNumber } = req.body;
         const user: User = await prisma.user.create({
             data: {
                 id: id,
                 name: name,
-                mail: mail,
+                mail: email,
                 role: 'user',
-                studentNumber: studentNumber
+                studentNumber: Number(studentNumber)
             }
         })
         res.json(user);
