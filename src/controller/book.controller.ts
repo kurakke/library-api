@@ -25,6 +25,11 @@ export const getDetail = async (req: Request, res: Response) => {
                         },
                     },
                 },
+                lendRecords: {
+                    select: {
+                        createdAt: true,
+                    }
+                }
             },
         });
 
