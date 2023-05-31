@@ -17,19 +17,11 @@ export const getDetail = async (req: Request, res: Response) => {
             },
             include: {
                 bookTags: {
-                    select: {
-                        tag: {
-                            select: {
-                                label: true,
-                            },
-                        },
-                    },
-                },
-                lendRecords: {
-                    select: {
-                        createdAt: true,
+                    include: {
+                        tag: true,
                     }
-                }
+                },
+                lendRecords: true,
             },
         });
 
