@@ -1,11 +1,30 @@
 import { Request, Response } from 'express';
 import { PrismaClient, LendRecord } from '@prisma/client';
+import { Prisma } from '@prisma/client';
+import { normalizeQuery } from '../utils/express'
 
 const prisma = new PrismaClient();
 
 export const get = async (req: Request, res: Response) => {
-    const books = await prisma.book.findMany();
-    res.send(books);
+    const { size = '99', page = '1' } = normalizeQuery(req.query);
+    const query = {
+        take: Number(size),
+        skip: Number(size) * Math.max(Number(page) - 1, 0)
+    } satisfies Prisma.BookFindManyArgs
+
+    const [list, count] = await prisma.$transaction([
+        prisma.book.findMany(query),
+        prisma.book.count(),
+    ])
+
+    res.send(
+        {
+            list,
+            size: Number(size),
+            page: Number(page),
+            total: count,
+            isReached: query.skip + list.length >= count
+        })
 };
 
 export const getDetail = async (req: Request, res: Response) => {
@@ -17,14 +36,11 @@ export const getDetail = async (req: Request, res: Response) => {
             },
             include: {
                 bookTags: {
-                    select: {
-                        tag: {
-                            select: {
-                                label: true,
-                            },
-                        },
-                    },
+                    include: {
+                        tag: true,
+                    }
                 },
+                lendRecords: true,
             },
         });
 
