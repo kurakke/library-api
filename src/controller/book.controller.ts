@@ -96,8 +96,7 @@ export const getLendRecord = async (req: Request, res: Response) => {
 
 export const create = async (req: Request, res: Response) => {
     try {
-        const { bookId, userId, returnedDate } = req.body;
-        const deadline = new Date(Date.now() + (3 * 24 * 60 * 60 * 1000))
+        const { bookId, userId, returnedDate, deadline } = req.body;
         const bookHistory = await prisma.lendRecord.create({
             data: {
                 bookId,
