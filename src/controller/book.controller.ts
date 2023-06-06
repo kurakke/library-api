@@ -51,14 +51,18 @@ export const getLendRecord = async (req: Request, res: Response) => {
                 id,
             },
             include: {
-                lendRecords: {
+                lendRecord: {
                     include: {
                         book: {
-                            select: {
-                                id: true,
-                            },
-                        },
-                    },
+                            include: {
+                                bookTags: {
+                                    include: {
+                                        tag: true,
+                                    }
+                                }
+                            }
+                        }
+                    }
                 },
             },
         });
