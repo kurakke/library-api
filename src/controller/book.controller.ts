@@ -122,3 +122,14 @@ export const update = async (req: Request, res: Response): Promise<LendRecord> =
     res.send(bookHistory)
     return bookHistory;
 }
+
+export const remove = async (req: Request, res: Response) => {
+    const { lendRecordId } = req.body;
+    const remove = await prisma.lendRecord.delete({
+        where: {
+            id: lendRecordId
+        }
+    })
+    res.send(remove);
+    return remove;
+}
