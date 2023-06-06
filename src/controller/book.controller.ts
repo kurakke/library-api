@@ -116,7 +116,8 @@ export const create = async (req: Request, res: Response) => {
 }
 
 export const update = async (req: Request, res: Response): Promise<LendRecord> => {
-    const { lendRecordId, returnedDate } = req.body;
+    const { lendRecordId } = req.body;
+    const returnedDate = new Date(Date.now())
     const bookHistory = await prisma.lendRecord.update({
         where: {
             id: lendRecordId
