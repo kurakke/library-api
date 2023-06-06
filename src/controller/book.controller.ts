@@ -85,6 +85,6 @@ export const serch = async (req: Request, res: Response) => {
                 isReached: query.skip + list.length >= count
             })
     } catch (e) {
-        console.error(e);
+        console.error(`error: ${String(e)}`);
     }
 }
