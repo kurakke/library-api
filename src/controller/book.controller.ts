@@ -99,6 +99,37 @@ export const getLendRecord = async (req: Request, res: Response) => {
     }
 };
 
+export const serch = async (req: Request, res: Response) => {
+    try {
+        const { size = '99', page = '1', serchWord } = req.body;
+        const query = {
+            take: Number(size),
+            skip: Number(size) * Math.max(Number(page) - 1, 0),
+            where: { title: { contains: serchWord } }
+        } satisfies Prisma.BookFindManyArgs
+
+        const [list, count] = await prisma.$transaction([
+            prisma.book.findMany(query),
+            prisma.book.count({
+                where: {
+                    title: { contains: serchWord }
+                }
+            }),
+        ])
+
+        res.send(
+            {
+                list,
+                size: Number(size),
+                page: Number(page),
+                total: count,
+                isReached: query.skip + list.length >= count
+            })
+    } catch (e) {
+        console.error(`error: ${String(e)}`);
+    }
+}
+
 export const create = async (req: Request, res: Response) => {
     try {
         const { bookId, userId, returnedDate, deadline } = req.body;
