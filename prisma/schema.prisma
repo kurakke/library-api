@@ -14,7 +14,7 @@ model User {
   mail          String
   role          String
   studentNumber Int
-  lendRecord    LendRecord[]
+  lendRecords    LendRecord[]
 }
 
 model LendRecord {
