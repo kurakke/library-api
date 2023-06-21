@@ -6,7 +6,6 @@ const bookController = require('../controller/book.controller');
 router.get('/', bookController.get);
 router.get('/:id', bookController.getDetail);
 router.post('/serch', bookController.serch);
-router.get('/lendRecord/:id', bookController.getLendRecord);
 router.post('/lendRecord', bookController.create)
 router.put('/lendRecord', bookController.update)
 router.post('/lendRecord/delete', bookController.remove)
