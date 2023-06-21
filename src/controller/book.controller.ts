@@ -63,8 +63,6 @@ export const getDetail = async (req: Request, res: Response) => {
 
 };
 
-
-
 export const serch = async (req: Request, res: Response) => {
     try {
         const { size = '99', page = '1', serchWord } = req.body;
