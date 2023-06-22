@@ -48,7 +48,11 @@ export const getDetail = async (req: Request, res: Response) => {
                         tag: true,
                     }
                 },
-                lendRecords: true,
+                lendRecords: {
+                    include: {
+                        user: true,
+                    }
+                }
             },
         });
 
