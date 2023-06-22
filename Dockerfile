@@ -20,4 +20,4 @@ RUN npx prisma generate
 RUN npm run build
 
 # エントリポイントの指定
-CMD [ "node", "dist/src/index.js" ]
+CMD [ "node", "dist/index.js" ]
