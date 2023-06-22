@@ -1,23 +1,23 @@
 import { Request, Response } from 'express';
-import { PrismaClient, LendRecord } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
 import { Prisma } from '@prisma/client';
 import { normalizeQuery } from '../utils/express'
 
 const prisma = new PrismaClient();
 
 export const get = async (req: Request, res: Response) => {
-    try{
+    try {
         const { size = '99', page = '1' } = normalizeQuery(req.query);
         const query = {
             take: Number(size),
             skip: Number(size) * Math.max(Number(page) - 1, 0)
         } satisfies Prisma.BookFindManyArgs
-    
+
         const [list, count] = await prisma.$transaction([
             prisma.book.findMany(query),
             prisma.book.count(),
         ])
-    
+
         res.send(
             {
                 list,
@@ -48,7 +48,11 @@ export const getDetail = async (req: Request, res: Response) => {
                         tag: true,
                     }
                 },
-                lendRecords: true,
+                lendRecords: {
+                    include: {
+                        user: true,
+                    }
+                }
             },
         });
 
@@ -117,7 +121,7 @@ export const create = async (req: Request, res: Response) => {
 }
 
 export const update = async (req: Request, res: Response) => {
-    try{
+    try {
         const { lendRecordId } = req.body;
         const returnedDate = new Date(Date.now())
         const bookHistory = await prisma.lendRecord.update({
@@ -140,7 +144,7 @@ export const update = async (req: Request, res: Response) => {
 }
 
 export const remove = async (req: Request, res: Response) => {
-    try{
+    try {
         const { lendRecordId } = req.body;
         const remove = await prisma.lendRecord.delete({
             where: {
