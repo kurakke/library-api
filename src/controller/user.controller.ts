@@ -59,3 +59,26 @@ export const getLendRecord = async (req: Request, res: Response) => {
         return res.status(500).send({ error: String(e) });
     }
 };
+
+export const update = async (res: Response, req: Request) => {
+    try {
+        const { id, name, email, studentNumber } = req.body;
+        const user = await prisma.user.update({
+            where: {
+                id: id,
+            },
+            data:{
+                name: name,
+                mail: email,
+                studentNumber: Number(studentNumber),
+            }
+        })
+        res.json(user);
+        return user;
+    } catch (e) {
+        if (e instanceof Error) {
+            return res.status(500).send({ error: e.message });
+        }
+        return res.status(500).send({ error: String(e) });
+    }
+}
