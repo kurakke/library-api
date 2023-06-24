@@ -5,6 +5,7 @@ const userController = require('../controller/user.controller')
 
 router.post('/create', userController.create)
 router.get('/lendRecord/:id', userController.getLendRecord);
+router.post('/edit', userController.edit);
 
 module.exports = router
 export default router
