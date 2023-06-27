@@ -5,14 +5,24 @@ import bookRouter from './routes/book.route';
 const app = express();
 const port = 8080;
 const cors = require('cors');
+
+const allowedOrigins = [
+    'http://localhost:3000',
+    'https://library-web-develop.vercel.app/',
+];
+
 app.use(
     cors({
-        origin: 'http://localhost:3000',
-    })
-);
-app.use(
-    cors({
-        origin: 'https://library-web-develop.vercel.app/',
+        origin: (
+            origin: string | undefined,
+            callback: (err: Error | null, allow?: boolean) => void
+        ) => {
+            if (!origin || allowedOrigins.includes(origin)) {
+                callback(null, true);
+            } else {
+                callback(new Error('Not allowed by CORS'));
+            }
+        },
     })
 );
 app.use(express.json());
