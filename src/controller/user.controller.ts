@@ -1,5 +1,5 @@
-import { Request, Response } from "express";
-import { PrismaClient, User } from "@prisma/client";
+import { Request, Response } from 'express';
+import { PrismaClient, User } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
@@ -12,9 +12,9 @@ export const create = async (req: Request, res: Response) => {
                 name: name,
                 mail: email,
                 role: 'user',
-                studentNumber: Number(studentNumber)
-            }
-        })
+                studentNumber: Number(studentNumber),
+            },
+        });
         res.json(user);
         return user;
     } catch (e) {
@@ -22,7 +22,7 @@ export const create = async (req: Request, res: Response) => {
             res.status(500).send({ error: e.message });
         }
     }
-}
+};
 
 export const getLendRecord = async (req: Request, res: Response) => {
     try {
@@ -39,11 +39,11 @@ export const getLendRecord = async (req: Request, res: Response) => {
                                 bookTags: {
                                     include: {
                                         tag: true,
-                                    }
-                                }
-                            }
-                        }
-                    }
+                                    },
+                                },
+                            },
+                        },
+                    },
                 },
             },
         });
@@ -60,19 +60,19 @@ export const getLendRecord = async (req: Request, res: Response) => {
     }
 };
 
-export const update = async (res: Response, req: Request) => {
+export const update = async (req: Request, res: Response) => {
     try {
         const { id, name, email, studentNumber } = req.body;
         const user = await prisma.user.update({
             where: {
                 id: id,
             },
-            data:{
+            data: {
                 name: name,
                 mail: email,
                 studentNumber: Number(studentNumber),
-            }
-        })
+            },
+        });
         res.json(user);
         return user;
     } catch (e) {
@@ -81,4 +81,4 @@ export const update = async (res: Response, req: Request) => {
         }
         return res.status(500).send({ error: String(e) });
     }
-}
+};
