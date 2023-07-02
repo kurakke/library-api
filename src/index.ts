@@ -11,20 +11,10 @@ const allowedOrigins = [
     'https://library-web-develop.vercel.app/',
 ];
 
-app.use(
-    cors({
-        origin: (
-            origin: string | undefined,
-            callback: (err: Error | null, allow?: boolean) => void
-        ) => {
-            if (!origin || allowedOrigins.includes(origin)) {
-                callback(null, true);
-            } else {
-                callback(new Error('Not allowed by CORS'));
-            }
-        },
-    })
-);
+app.use(cors({
+    origin: allowedOrigins,
+    credentials: true,
+}));
 app.use(express.json());
 
 app.use('/books', bookRouter);
