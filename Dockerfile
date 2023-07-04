@@ -14,8 +14,6 @@ RUN npm install -g typescript
 # アプリケーションのソースコードをコピー
 COPY . .
 
-RUN npx prisma generate
-
 # TypeScriptのビルド
 RUN npm run build
 
