@@ -10,8 +10,8 @@
 - AWS Cognito
 - AWS RDS
 ## 開発環境の動かし方
- git pullして.envファイルを作成した後に
+ git pullして
 ```
 docker build -t library-api .
-docker run -p 8080:8080 -d library-api 
+docker run -p 8080:8080　-e DATABASE_URL='database_url' -d library-api 
 ```
